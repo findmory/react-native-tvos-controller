@@ -32,6 +32,15 @@ export interface TapEvent {
         | "RightArrow";
     code: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 }
+export interface SwipeEvent {
+    direction: "Right" | "Down" | "Left" | "Up";
+    code: 0 | 1 | 2 | 3;
+}
+export interface LongPressEvent {
+    state: "Began" | "Ended";
+    code: 0 | 1;
+}
+
 export function subscribe(
     eventType: "PAN",
     handler: (event: PanEvent) => void
@@ -40,4 +49,14 @@ export function subscribe(
 export function subscribe(
     eventType: "TAP",
     handler: (event: TapEvent) => void
+): CancelSubscription;
+
+export function subscribe(
+    eventType: "SWIPE",
+    handler: (event: SwipeEvent) => void
+): CancelSubscription;
+
+export function subscribe(
+    eventType: "LONGPRESS",
+    handler: (event: LongPressEvent) => void
 ): CancelSubscription;
